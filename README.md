@@ -106,27 +106,28 @@
 プロジェクトのディレクトリ構造は以下の通りです。
  ```bash
 app
-├── Http            .... # HTTPリクエスト処理関連のフォルダ
-│   ├── Controllers
-│   └── Requests
-├── Models
-├── Services
+├── Http                .... HTTPリクエスト処理関連のフォルダ
+│   ├── Controllers     .... コントローラーを格納し、リクエストを処理
+│   └── Requests        .... リクエストバリデーション関連のファイル
+├── Models　　　　　     .... データベースモデルを格納
+├── Services            .... ビジネスロジックを実装するサービスクラスを格納
 dist
-├── index.js
-node_modules
+├── index.js            .... ビルドされたJavaScriptファイル
+node_modules            .... npmでインストールされた依存パッケージ
 public
-├── img
-├── js
-├── module
-├── screenshot
-├── style
-├── index.js
-└── test.php
+├── img                 .... 画像ファイルを格納
+├── js                  .... JavaScriptファイルを格納
+├── module              .... モジュール関連のファイルを格納
+├── screenshot          .... スクリーンショットを格納
+├── style               .... CSSスタイルシートを格納
+├── index.js            .... メインのJavaScriptファイル
+└── test.php            .... テスト用のPHPファイル
 src
-├── config
-│   ├── development
-│   └── production
-│       └── htaccess
+├── config              ....  設定ファイルを格納
+│   ├── development     .... 開発環境用の設定ファイル
+|       └── htaccess    .... 本番環境用のApache設定ファイル
+│   └── production　    .... 本番環境用の設定ファイル
+│       └── htaccess    .... 本番環境用のApache設定ファイル
 ├── views
 │   ├── common
 │   │   ├── header.php
