@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "webpack --env production=false",
+    "build:prod": "webpack --env production=true"
+  },
+  "devDependencies": {
+    "webpack": "^5.92.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

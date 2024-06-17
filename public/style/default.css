@@ -1,0 +1,138 @@
+:root{
+      --border-color: rgba(128, 128, 128, 0.315);
+}
+
+body{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100vw;
+      min-height: 100vh;
+      overflow-x: hidden;
+}
+
+p{
+      margin: 0;
+      margin-bottom: 0 !important;
+}
+
+.contents{
+      max-width: 1500px;
+      width: 100%;
+      margin: 0 auto;
+      height: 100%;
+}
+.hidden{
+      display: none !important;
+}
+.relative{
+      position: relative;
+}
+.absolute{
+      position: absolute;
+}
+/* menu bar */
+.menu_bar{
+      position: sticky;
+      left: 0;
+      top: 0;
+      width: 172px;
+      height: 100vh;
+      background-color: #123459;
+}
+.menu-icon {
+      width: 35px;
+      height: 35px;
+  }
+.menu_txt{
+      color: #fff;
+      font-size: 14px;
+      margin-top: 3px;
+}
+.menu-box{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 39px;
+      cursor: pointer;
+      
+}
+/* .menu-box:not(:nth-child(1)){
+      margin-top: 50px;
+} */
+
+.area{
+      display: flex;
+      width: 100%;
+}
+.index_container{
+      width: 100%;
+      background-color: rgba(128, 128, 128, 0.082);
+}
+.padding_box{
+      padding: 39px 40px 20px 40px;
+}
+table{
+
+      width: 100%;
+}
+
+.table-container{
+      background-color: #fff;
+      padding: 30px;
+      margin-top: 10px;
+
+}
+.border_bottom{
+      border-bottom: 1px solid var(--border-color);
+}
+.border_bottom2{
+      border-bottom: 1px solid black;
+}
+.group_title{
+      font-size: 23px;
+}
+.free_txt{
+      border: 1px solid var(--border-color);
+  }
+/* th, td{
+      white-space: nowrap;
+      overflow: auto;
+} */
+.link_icon{
+      width: 23px;
+}
+/* table{
+      width: 100%;
+}
+
+th, td{
+      white-space: nowrap;
+} */
+.table_area{
+      padding: 11px 44px;
+}
+
+.input_edit{
+      background-color: transparent;
+      border: none;
+      padding: 6px;
+      width: 100%;
+      pointer-events: none;
+}
+.input_edit:focus{
+      outline: none;
+}
+.txt_link{
+      text-decoration: underline;
+      color: #0d6efd;
+}
+.bg-gray{
+      background-color: #000000b0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+}
