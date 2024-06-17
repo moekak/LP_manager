@@ -118,7 +118,7 @@ public
 ├── index.js                    .... メインのJavaScriptファイル
 └── test.php                    .... テスト用のPHPファイル
 src
-├── config                      ....  設定ファイルを格納
+├── config                      .... 設定ファイルを格納
 │   ├── development             .... 開発環境用の設定ファイル
 │       └── htaccess            .... 開発環境用のApache設定ファイル
 │   └── production　            .... 本番環境用の設定ファイル
