@@ -104,7 +104,7 @@
 ## ディレクトリ構造
 
 プロジェクトのディレクトリ構造は以下の通りです。
-
+ ```bash
 app
 ├── Http
 │   ├── Controllers
@@ -144,3 +144,4 @@ package-lock.json
 package.json
 README.md
 webpack.config.js
+```
