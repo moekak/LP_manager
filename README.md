@@ -101,3 +101,46 @@
 
 
 
+## ディレクトリ構造
+
+プロジェクトのディレクトリ構造は以下の通りです。
+
+app
+  ├── Http
+  │   ├── Controllers
+  │   └── Requests
+  ├── Models
+  └── Services
+dist
+  ├── index.js
+node_modules
+public
+  ├── img
+  ├── js
+  ├── module
+  ├── screenshot
+  ├── style
+  ├── index.js
+  └── test.php
+src
+  ├── config
+  │   ├── development
+  │   ├── production
+  │   └── conf.php
+  └── views
+      ├── common
+      │   ├── header.php
+      │   └── menu.php
+      ├── modal
+      │   ├── group_create.php
+      │   ├── group_edit.php
+      │   ├── lp_create.php
+      │   └── lp_delete.php
+      ├── index.php
+      └── screenshot.php
+.htaccess
+index.php
+package-lock.json
+package.json
+README.md
+webpack.config.js
