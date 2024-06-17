@@ -91,6 +91,7 @@
 | id             | INT         | PRIMARY KEY, AUTO_INCREMENT | LPスクリーンショット の一意なID     |
 | lp_id        | INT         | FOREIGN KEY (lp_sites.id)   | LPスクリーンショットに紐ずくLPID |
 | group_id        | INT         | FOREIGN KEY (groups.id)   | LPスクリーンショットに紐ずくグループID |
+| screenshot        | VARCHAR(256)       | NOT NULL                 | スクリーンショット        |
 | created_at     | TIMESTAMP   | DEFAULT CURRENT_TIMESTAMP | LPスクリーンショット作成日時       |
 | updated_at     | TIMESTAMP   | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | LPスクリーンショット更新日時         |
 
