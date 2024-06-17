@@ -106,43 +106,43 @@
 プロジェクトのディレクトリ構造は以下の通りです。
  ```bash
 app
-├── Http                .... HTTPリクエスト処理関連のフォルダ
-│   ├── Controllers     .... コントローラーを格納し、リクエストを処理
-│   └── Requests        .... リクエストバリデーション関連のファイル
-├── Models　　　　　     .... データベースモデルを格納
-├── Services            .... ビジネスロジックを実装するサービスクラスを格納
+├── Http                        .... HTTPリクエスト処理関連のフォルダ
+│   ├── Controllers             .... コントローラーを格納し、リクエストを処理
+│   └── Requests                .... リクエストバリデーション関連のファイル
+├── Models　　　　　             .... データベースモデルを格納
+├── Services                    .... ビジネスロジックを実装するサービスクラスを格納
 dist
-├── index.js            .... ビルドされたJavaScriptファイル
-node_modules            .... npmでインストールされた依存パッケージ
+├── index.js                    .... ビルドされたJavaScriptファイル
+node_modules                    .... npmでインストールされた依存パッケージ
 public
-├── img                 .... 画像ファイルを格納
-├── js                  .... JavaScriptファイルを格納
-├── module              .... モジュール関連のファイルを格納
-├── screenshot          .... スクリーンショットを格納
-├── style               .... CSSスタイルシートを格納
-├── index.js            .... メインのJavaScriptファイル
-└── test.php            .... テスト用のPHPファイル
+├── img                         .... 画像ファイルを格納
+├── js                          .... JavaScriptファイルを格納
+├── module                      .... モジュール関連のファイルを格納
+├── screenshot                  .... スクリーンショットを格納
+├── style                       .... CSSスタイルシートを格納
+├── index.js                    .... メインのJavaScriptファイル
+└── test.php                    .... テスト用のPHPファイル
 src
-├── config              ....  設定ファイルを格納
-│   ├── development     .... 開発環境用の設定ファイル
-|       └── htaccess    .... 本番環境用のApache設定ファイル
-│   └── production　    .... 本番環境用の設定ファイル
-│       └── htaccess    .... 本番環境用のApache設定ファイル
-├── views
-│   ├── common
-│   │   ├── header.php
-│   │   └── menu.php
-│   ├── modal
-│   │   ├── group_create.php
-│   │   ├── group_edit.php
-│   │   ├── lp_create.php
-│   │   └── lp_delete.php
-│   ├── index.php
-│   └── screenshot.php
-.htaccess
-index.php
-package-lock.json
-package.json
-README.md
-webpack.config.js
+├── config                      ....  設定ファイルを格納
+│   ├── development             .... 開発環境用の設定ファイル
+│       └── htaccess            .... 開発環境用のApache設定ファイル
+│   └── production　            .... 本番環境用の設定ファイル
+│       └── htaccess            .... 本番環境用のApache設定ファイル
+├── views                       .... ビュー（テンプレート）ファイルを格納
+│   ├── common                  .... 共通テンプレートを格納
+│   │   ├── header.php          .... ヘッダーのテンプレート
+│   │   └── menu.php            .... 左メニューのテンプレート
+│   ├── modal                   .... モーダル関連のテンプレート
+│   │   ├── group_create.php    .... グループ作成モーダル
+│   │   ├── group_edit.php      .... グループ編集モーダル
+│   │   ├── lp_create.php       .... LP作成モーダル
+│   │   └── lp_delete.php       .... LP削除モーダル
+│   ├── index.php               .... メインのインデックスビュー
+│   └── screenshot.php          .... スクリーンショットビュー
+.htaccess                       .... Apache設定ファイル
+index.php                       .... アプリケーションのエントリーポイント
+package-lock.json               .... npmの依存関係を固定
+package.json                    .... npmのプロジェクト設定と依存関係
+README.md                       .... プロジェクトの説明
+webpack.config.js               .... Webpackの設定ファイル
 ```
