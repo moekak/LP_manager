@@ -106,38 +106,38 @@
 プロジェクトのディレクトリ構造は以下の通りです。
 
 app
-  ├── Http
-  │   ├── Controllers
-  │   └── Requests
-  ├── Models
-  └── Services
+├── Http
+│   ├── Controllers
+│   └── Requests
+├── Models
+├── Services
 dist
-  ├── index.js
+├── index.js
 node_modules
 public
-  ├── img
-  ├── js
-  ├── module
-  ├── screenshot
-  ├── style
-  ├── index.js
-  └── test.php
+├── img
+├── js
+├── module
+├── screenshot
+├── style
+├── index.js
+└── test.php
 src
-  ├── config
-  │   ├── development
-  │   ├── production
-  │   └── conf.php
-  └── views
-      ├── common
-      │   ├── header.php
-      │   └── menu.php
-      ├── modal
-      │   ├── group_create.php
-      │   ├── group_edit.php
-      │   ├── lp_create.php
-      │   └── lp_delete.php
-      ├── index.php
-      └── screenshot.php
+├── config
+│   ├── development
+│   └── production
+│       └── htaccess
+├── views
+│   ├── common
+│   │   ├── header.php
+│   │   └── menu.php
+│   ├── modal
+│   │   ├── group_create.php
+│   │   ├── group_edit.php
+│   │   ├── lp_create.php
+│   │   └── lp_delete.php
+│   ├── index.php
+│   └── screenshot.php
 .htaccess
 index.php
 package-lock.json
