@@ -106,7 +106,7 @@
 プロジェクトのディレクトリ構造は以下の通りです。
  ```bash
 app
-├── Http ... "22222"
+├── Http            .... # HTTPリクエスト処理関連のフォルダ
 │   ├── Controllers
 │   └── Requests
 ├── Models
