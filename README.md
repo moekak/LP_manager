@@ -20,7 +20,7 @@
 
 2. ディレクトリに移動します。
 
-    ```bach
+    ```bash
     cd LPManager
     ```
 
@@ -41,7 +41,7 @@
     ```
 
 
-## ビルド
+## ビルド方法
 プロジェクトをビルドするには、以下のコマンドを実行します。
 
 1. 開発環境
@@ -146,4 +146,3 @@ package-lock.json               .... npmの依存関係を固定
 package.json                    .... npmのプロジェクト設定と依存関係
 README.md                       .... プロジェクトの説明
 webpack.config.js               .... Webpackの設定ファイル
-```
