@@ -44,6 +44,8 @@
     justify-content: space-between;
 }
 
-.modal-btn-area{
+.modal-btn-area {
     margin-top: 25px;
+    display: flex;
+    gap: 9px;
 }

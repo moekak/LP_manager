@@ -136,3 +136,23 @@ th, td{
       height: 100%;
       z-index: 2;
 }
+.success_msg{
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      z-index: 99;
+      position: fixed;
+      background: #fff;
+      color: green;
+      border: 2px solid green;
+      padding: 6px 20px;
+      border-radius: 6px;
+      top: 5%;
+      font-weight: bold;
+}
+.disabled_btn{
+      opacity: 50%;
+      pointer-events: none;
+      cursor: not-allowed;
+}

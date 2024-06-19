@@ -6,3 +6,9 @@ dist/
 
 # IDE settings
 .vscode/
+
+#settig file
+.env
+
+#vendor 
+vendor
