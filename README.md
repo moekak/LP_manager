@@ -15,7 +15,7 @@
 ## インストール方法
 1. リポジトリをクローンします。
     ```bash
-    git clone git@github.com:If-you-give-up-then-it-all-ends-here/LPManager.git
+    git clone git@github.com:moekak/LP_manager.git
     ```
 
 2. ディレクトリに移動します。
