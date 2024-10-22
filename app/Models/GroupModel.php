@@ -16,15 +16,16 @@ class GroupModel{
     }
 
     // グループのデータを挿入する
-    public function insertGroupData($title){
+    public function insertGroupData($title, $category_id){
         try{
             $statement = $this->pdo->prepare(
                 "INSERT INTO 
-                    `groups` (`title`) 
+                    `groups` (`title`, `category_id`) 
             VALUES 
-                (:title)
+                (:title, :category_id)
         ");
             $statement->bindValue(':title', $title);
+            $statement->bindValue(':category_id', $category_id);
             $statement->execute();
             
         }catch(PDOException $e){
@@ -36,9 +37,10 @@ class GroupModel{
         }
     }
     // グループの全てのデータを取得する
-    public function selectGroupData(){
+    public function selectGroupData($category_id){
         try{
-            $statement = $this->pdo->prepare("SELECT * FROM `groups`");
+            $statement = $this->pdo->prepare("SELECT * FROM `groups` WHERE category_id = :category_id");
+            $statement->bindValue(':category_id', $category_id);
             $statement->execute();
             return $statement->fetchAll(PDO::FETCH_ASSOC);
             

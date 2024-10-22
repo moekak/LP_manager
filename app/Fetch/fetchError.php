@@ -1,5 +1,6 @@
 <?php
 
+// javasceiptで起きた時のエラーfetch用ファイル
 require_once(dirname(__FILE__) . "/../../src/config/conf.php");
 require_once(dirname(__FILE__) . "/../Services/utils/SystemFeedback.php");
 

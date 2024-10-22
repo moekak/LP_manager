@@ -14,7 +14,12 @@ module.exports = (env) => {
         
         entry: {
             index: path.resolve(__dirname, `${baseJsPath}/index.js`),
+            group: path.resolve(__dirname, `${baseJsPath}/group.js`),
         },
+        optimization: {
+            usedExports: true,
+            sideEffects: false, // 特に必要であれば設定
+          },
         resolve: {
             alias: {
             // エイリアスの設定
@@ -28,13 +33,14 @@ module.exports = (env) => {
             path: path.resolve(__dirname, 'dist'),
             filename: '[name].js',
         },
+        
         plugins: [
             // DefinePluginを使って環境変数を設定
             new webpack.DefinePlugin({
                 'process.env': {
                     // ここに環境に応じた変数を定義
-                    API_URL: JSON.stringify(isProduction? '/kido_test/LP_system/app/fetch' : '/LP_system/app/fetch'),
-                    SYSTEM_URL: JSON.stringify(isProduction ? '/kido_test/LP_system/' : '/LP_system/'),
+                    API_URL: JSON.stringify(isProduction? '/app/Fetch' : '/LP_system/app/Fetch'),
+                    SYSTEM_URL: JSON.stringify(isProduction ? '/' : '/LP_system/'),
                 }
             })
         ],

@@ -1,6 +1,6 @@
 .screenshot_area{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 220px 220px 220px 220px 220px;
     gap: 25px;
     padding: 14px 44px;
     max-height: 600px;
@@ -9,11 +9,13 @@
 .screenshot{
     width: 100%;
 }
-.screenshot_txt{
+.screenshot_txt {
     color: gray;
     margin-top: 4px;
     font-size: 15px;
     white-space: nowrap;
+    max-width: 220px;
+    overflow: hidden;
 }
 
 .screenshot-container{
@@ -45,6 +47,10 @@
 }
 @media screen and (max-width: 1500px){
     .screenshot_area{
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 220px 220px 220px 220px;
     }
+}
+.screenshot_box{
+    max-width: 220px;
+    width: 100%;
 }

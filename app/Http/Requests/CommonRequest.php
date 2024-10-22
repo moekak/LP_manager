@@ -6,6 +6,6 @@ class CommonRequest{
     }
 
     public static function hasValue($data){
-        return isset($data) && $data !== "";
+        return isset($data) && $data !== "" && $data !== null;
     }
 }

@@ -15,13 +15,17 @@ class GroupController{
 
     public function create(){
         // バリデーションチェック
-        GroupValidation::createValidation();
+        GroupValidation::createValidation(intval($_SESSION["category_id"]));
+        
 
+       
         // データの挿入
         $title = DataValidation::sanitizeInput($_POST["group_title"]);
-        $this->group_model->insertGroupData($title);
+        $category_id = intval($_SESSION["category_id"]);
+        $this->group_model->insertGroupData($title, $category_id);
+
         $_SESSION["success"] = SUCCESS_CREATE_GROUP;
-        header("Location:" . ROUTE_PATH . "index");
+        header("Location:" . ROUTE_PATH . "category/?id=" . $_SESSION["category_id"]);
         exit;
     }
 
@@ -34,7 +38,7 @@ class GroupController{
 
         $this->group_model->updateGroupData($group_id, $title);
         $_SESSION["success"] = SUCCESS_EDIT_GROUP;
-        header("Location:" . ROUTE_PATH . "index");
+        header("Location:" . ROUTE_PATH . "category/?id=" . $_SESSION["category_id"]);
         exit;
     }
 }

@@ -7,8 +7,11 @@ $error = "";
 if(isset($_SESSION["error"])){
     $error = $_SESSION["error"]["errorMsg"];
 }
+$error_code = "";
+if(isset($_SESSION["error"])){
+    $error_code = $_SESSION["error"]["errorCode"];
+}
 unset($_SESSION["error"]);
-
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +23,6 @@ unset($_SESSION["error"]);
 </head>
 <body>
     <p><?= $error?></p>
-    <a href="<?=ROUTE_PATH ?>index">戻る</a>
+    <a href="<?=ROUTE_PATH ?>category">戻る</a>
 </body>
 </html>

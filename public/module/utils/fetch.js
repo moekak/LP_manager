@@ -2,7 +2,7 @@ import { sendErrorLog, redirectToErrorPage } from "@index/index.js";
 
 export const fetchOperation = (data, url) => {
 
-  console.log(data);
+
     return fetch(`${process.env.API_URL}/${url}`, {
       method: "POST",
       headers: {
@@ -17,10 +17,10 @@ export const fetchOperation = (data, url) => {
     })
     .catch((error)=>{
 
-      console.log(error);
+  
       // エラーが発生した場合の処理
-      // sendErrorLog(error); // エラーログを送信
-      // redirectToErrorPage(); // エラーページにリダイレクト
+      sendErrorLog(error); // エラーログを送信
+      redirectToErrorPage(); // エラーページにリダイレクト
 
     })
   };

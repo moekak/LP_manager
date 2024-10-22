@@ -46,10 +46,11 @@ class LpModel
                     (:group_id, :title, :domain, :content)
             ");
             $statement->bindValue(':group_id', $data["group_id"]);
-            $statement->bindValue(':title', $data["lp_title"]);
+            $statement->bindValue(':title', "");
             $statement->bindValue(':domain', $data["domain"]);
             $statement->bindValue(':content', $data["content"]);
             $statement->execute();
+            return $this->pdo->lastInsertId();
 
         } catch (PDOException $e) {
             SystemFeedback::catchError(SERVER_ERROR . $e->getMessage());
@@ -58,8 +59,8 @@ class LpModel
             exit;
         }
     }
-    // LPのデータをデータベースに登録する
-    public function selectLPdataWithGroup()
+    // LPのデータとグループを取り出す
+    public function selectLPdataWithGroup($category_id)
     {
         try {
             $statement = $this->pdo->prepare(
@@ -80,12 +81,25 @@ class LpModel
                     lp_sites.group_id = groups.id
                 WHERE
                     lp_sites.is_deleted = '0'
-                ORDER BY groups.created_at DESC
+                AND
+                    groups.category_id = :category_id
+                ORDER BY 
+                CASE
+                WHEN groups.title REGEXP '^[0-9]' THEN 1  -- 数字
+                WHEN groups.title REGEXP '^[a-zA-Z]' THEN 2  -- アルファベット
+                WHEN groups.title REGEXP '^[ぁ-ん]' THEN 3  -- ひらがな
+                WHEN groups.title REGEXP '^[ァ-ン]' THEN 4  -- カタカナ
+                ELSE 5
+                END,
+                    groups.title ASC;
                 ");
 
+            $statement->bindValue(':category_id', $category_id);
             $statement->execute();
 
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            // データの成型
             $groupedData = [];
             foreach ($results as $row) {
                 $groupId = $row['group_id'];
@@ -108,7 +122,15 @@ class LpModel
                 }
             }
 
-            return $groupedData;
+             // 各グループのlp_sitesを新しい順に並べ替える
+    foreach ($groupedData as &$group) {
+        usort($group['lp_sites'], function ($a, $b) {
+            return strtotime($b['lp_created_at']) - strtotime($a['lp_created_at']);
+        });
+    }
+    unset($group); // 参照を解除
+
+    return $groupedData;
 
         } catch (PDOException $e) {
             SystemFeedback::catchError(SERVER_ERROR . $e->getMessage());
@@ -151,14 +173,14 @@ class LpModel
             $fields[] = "domain = :domain";
             $params[':domain'] = $data["domain"];
         }
-        if (isset($data["content"])) {
+        if (isset($data["content"]) && $data["content"] !== "") {
             $fields[] = "content = :content";
             $params[':content'] = $data["content"];
         }
     
         // フィールドが設定されていない場合は更新しない
         if (empty($fields)) {
-            header("Location:" . ROUTE_PATH . "index");
+            header("Location:" . ROUTE_PATH . "category/?id=" . $_SESSION["category_id"]);
             exit;
         }
     
@@ -240,4 +262,24 @@ public function updategroupId($group_id, $lp_id){
         exit;
     }
 }
+// LPwを削除する
+public function deletLP($id){
+    try {
+        $statement = $this->pdo->prepare(
+            "DELETE FROM lp_sites WHERE id = :id
+            ");
+
+        
+        $statement->bindValue(":id", $id);
+        $statement->execute();
+
+    } catch (PDOException $e) {
+        SystemFeedback::catchError(SERVER_ERROR . $e->getMessage());
+        $_SESSION["error"] =  ["errorCode" => "500", "errorMsg" => ERROR_500];
+        header("Location:" . ROUTE_PATH . "error");
+        exit;
+    }
+
+}
+
 }

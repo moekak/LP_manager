@@ -20,7 +20,7 @@ class DatabaseConnection{
          $dotenv->load();
         try {
             //  throw new Exception("テスト例外");
-            $dsn = "mysql:host=" . $_ENV["DB_HOST"] . ";dbname=" . $_ENV["DB_NAME"] .  ";charset=utf8";
+            $dsn = "mysql:host=" . $_ENV["DB_HOST"] . ";dbname=" . $_ENV["DB_NAME"] .  ";charset=utf8mb4";
             $this->pdo = new PDO($dsn, $_ENV["DB_USER"], $_ENV["DB_PASSWORD"]);
 
         } catch (\PDOException $e) {

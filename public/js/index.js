@@ -7,11 +7,8 @@ import {
   enableEditGroupBtn,
   fetchAndDisplayLpData,
   enableDragging,
-  disableDragging
+  drugAndDrop
 } from "@index/index.js";
-
-
-
 
 // #####################################################################################
 // ############################### モーダル処理 #########################################
@@ -37,14 +34,13 @@ import {
     });
   });
 
-  // // LP削除
-  // const deleteLP_btns = document.querySelectorAll(".js_delete_btn");
+  // LP削除キャンセル
+  const cancel_btn = document.querySelector(".js_cancel_btn");
 
-  // deleteLP_btns.forEach((btn) => {
-  //   btn.addEventListener("click", () => {
-  //     showModal("js_deleteLP_modal");
-  //   });
-  // });
+  cancel_btn.addEventListener("click", () => {
+    document.querySelector(".js_deleteLP_modal").classList.add("hidden")
+    document.querySelector(".bg-gray").classList.add("hidden")
+  });
 
   // モーダル非表示
   hideModal();
@@ -116,32 +112,28 @@ const edit_group_btns = document.querySelectorAll(".js_editGroup_btn");
 edit_group_btns.forEach((edit_group_btn) => {
   edit_group_btn.addEventListener("click", (e) => {
     // グループ編集フィールドの初期化
-    document.querySelector(".js_edit_group").value = ""
-    document.querySelector(".js_group_id").value = ""
-    
-    fetchAndDisplayGroupData(e)
-    enableEditGroupBtn()
+    document.querySelector(".js_edit_group").value = "";
+    document.querySelector(".js_group_id").value = "";
+
+    fetchAndDisplayGroupData(e);
+    enableEditGroupBtn();
   });
 });
-
-
 
 // ##################################################################################
 //  ######################### LP削除の処理 ####################################
 // ##################################################################################// LP削除
-  const deleteLP_btns = document.querySelectorAll(".js_delete_btn");
+const deleteLP_btns = document.querySelectorAll(".js_delete_btn");
 
-  deleteLP_btns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-
-      document.querySelector(".js_title_delete").innerHTML = ""
-    document.querySelector(".js_domain_delete").innerHTML = ""
-      fetchAndDisplayLpData(e)
-    });
+deleteLP_btns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    document.querySelector(".js_title_delete").innerHTML = "";
+    document.querySelector(".js_domain_delete").innerHTML = "";
+    fetchAndDisplayLpData(e);
   });
+});
 
 
-enableDragging()
 
 // LP一覧の編集のUI処理
 const edit_btn = document.querySelectorAll(".js_edit_btn");
@@ -155,3 +147,43 @@ const edit_btn = document.querySelectorAll(".js_edit_btn");
 //   })
 // })
 setupEditButton(edit_btn);
+
+// ##################################################################################
+// ################# データバリデーションエラーがあった場合の処理 #######################
+// ##################################################################################
+
+const error_code = document.querySelector(".js_error_code");
+const error_msg = document.querySelector(".js_error_msg");
+const errors = document.querySelectorAll(".js_error_txt");
+
+if (error_code.value == "400_lp") {
+  showModal("js_createLP_modal");
+  errors.forEach((error) => {
+    error.innerHTML = error_msg.value;
+    error.classList.remove("hidden");
+  });
+}
+if (error_code.value == "400_group") {
+  showModal("js_createGroup_modal");
+  errors.forEach((error) => {
+    error.innerHTML = error_msg.value;
+    error.classList.remove("hidden");
+  });
+}
+
+if (error_code.value == "400_group_edit") {
+  showModal("js_editGroup_modal");
+  errors.forEach((error) => {
+    error.innerHTML = error_msg.value;
+    error.classList.remove("hidden");
+  });
+}
+
+
+document.querySelector(".js_create_lp").addEventListener("click", ()=>{
+  document.querySelector(".js_wait_modal").classList.remove("hidden")
+  document.querySelector(".js_createLP_modal").classList.add("hidden")
+})
+
+enableDragging();
+drugAndDrop()

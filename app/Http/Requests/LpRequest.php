@@ -27,8 +27,8 @@ class LpRequest{
 
     // 送信されてきたデータが制限を超えてるかチェック
     public static function checkMaxLength($name){
-        $data = ["lp_title", "domain", "content"];
-        $maxLength = [20, 253, 256];
+        $data = ["domain", "content"];
+        $maxLength = [253, 256];
         $isValid = true;
 
         for ($i=0; $i < count($data); $i++) { 
@@ -44,15 +44,32 @@ class LpRequest{
 
     // 送信されてきたデータが空かチェック
     public static function checkEmptyValue(){
-        $data = ["lp_title", "domain"];
+        $data = ["domain"];
         $hasValue = true;
 
-        for ($i=0; $i < count($data) ; $i++) { 
+        for ($i=0; $i < count($data) ; $i++) {
             if(!CommonRequest::hasValue($_POST[$data[$i]])){
-                SystemFeedback::catchError("$data[$i]の" . MAXLENGTH_ERROR_MESSAGE);
+                SystemFeedback::catchError("$data[$i]の" . EMPTYVALUE_ERROR_MESSAE);
                 $hasValue = false;
             }
         }
+
+         return $hasValue;
+    }
+    // 送信されてきたデータが空かチェック(編集)
+    public static function checkEmptyValueForEdit(){
+        $data = ["lp_title", "domain"];
+        $hasValue = true;
+
+        for ($i=0; $i < count($data) ; $i++) {
+
+
+            if(!CommonRequest::hasValue($_POST[$data[$i]])){
+                SystemFeedback::catchError("$data[$i]の" . EMPTYVALUE_ERROR_MESSAE);
+                $hasValue = false;
+            }
+        }
+
          return $hasValue;
     }
 
@@ -66,13 +83,15 @@ class LpRequest{
     }
 
     // すでにドメインが登録されてるかチェック
-    public static function isDomainAlreadyExisted(){
+    public static function isDomainAlreadyExisted($type){
         $lp_model = new LpModel();
-        $data = DataValidation::sanitizeInput($_POST["domain"]);
+        $domain = DataValidation::sanitizeInput($type["domain"]);
 
+        $formatted_domain = filter_var($domain, FILTER_VALIDATE_URL) ? parse_url($domain)["host"] . (isset(parse_url($domain)["path"]) ? parse_url($domain)["path"] : '') . (isset(parse_url($domain)["query"]) ? '?' . parse_url($domain)["query"] : '') : $domain;
+        $formtted_domain = rtrim($formatted_domain, '/');
 
-        if($lp_model->checkDomainExists($data)){
-            SystemFeedback::catchError(DOMAIN_EXISTED_ERROR . "ドメイン: $data");
+        if($lp_model->checkDomainExists($formtted_domain)){
+            SystemFeedback::catchError(DOMAIN_EXISTED_ERROR . "ドメイン: $formtted_domain");
             return false;
         }else{
             return true;

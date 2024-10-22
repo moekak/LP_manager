@@ -24,7 +24,7 @@ class GroupRequest{
 
     // 送信されてきたデータが制限を超えてるかチェック
     public static function checkMaxLength(){
-        if(CommonRequest::checkLength($_POST["group_title"], 20)){
+        if(CommonRequest::checkLength($_POST["group_title"], 40)){
             return true;
         }else{
             SystemFeedback::catchError("group_titleが" . MAXLENGTH_ERROR_MESSAGE);
@@ -37,7 +37,7 @@ class GroupRequest{
         if(CommonRequest::hasValue($_POST["group_title"])){
             return true;
         }else{
-            SystemFeedback::catchError("group_titleの" . MAXLENGTH_ERROR_MESSAGE);
+            SystemFeedback::catchError("group_titleの" . EMPTYVALUE_ERROR_MESSAE);
             return false;
         }
     }

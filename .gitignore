@@ -12,3 +12,13 @@ dist/
 
 #vendor 
 vendor
+
+# others
+logs
+adminer-4.8.1.php
+python/Include
+python/Lib
+python/Scripts
+python/pyvenv.cfg
+python/__pycache__
+

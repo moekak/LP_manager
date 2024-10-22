@@ -5,6 +5,8 @@ session_start();
 
 $request = $_SERVER['REQUEST_URI'];
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
       switch($request){
             case $request == ROUTE_PATH ."index" :
@@ -36,6 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                   require __DIR__ . '/app/Http/Controllers/GroupController.php';
                   $controller = new GroupController();
                   $controller->edit();
+            case $request == ROUTE_PATH ."category/create" :
+                  require __DIR__ . '/app/Http/Controllers/CategoryController.php';
+                  $controller = new CategoryController();
+                  $controller->create();
+            case $request == ROUTE_PATH ."category/edit" :
+                  require __DIR__ . '/app/Http/Controllers/CategoryController.php';
+                  $controller = new CategoryController();
+                  $controller->edit();
             
          
       }
@@ -47,11 +57,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                   $controller = new LpController();
                   $controller->index();
                   break;
+            case $request == ROUTE_PATH ."category" :
+                  require __DIR__ . '/app/Http/Controllers/CategoryController.php';
+                  $controller = new CategoryController();
+                  $controller->index();
+                  break;
             case $request == ROUTE_PATH ."error" :
                   require __DIR__ . '/app/Http/Controllers/ErrorController.php';
                   $controller = new ErrorController();
                   $controller->index();
                   break;
+            case preg_match(URL, $request):
+                  require __DIR__ . '/app/Http/Controllers/LpController.php';
+                  $controller = new LpController();
+                  $controller->index();
+                  break;
+
       
           
             // case $request == ROUTE_PATH ."screenshot" :

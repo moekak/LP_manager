@@ -17,9 +17,11 @@ export function setupEditButton(editBtns) {
       let targetFields = parentElement.querySelectorAll(".js_input_edit");
       let targetLinks = parentElement.querySelectorAll(".js_link");
       let create_btn =
-        parentElement.parentElement.parentElement.parentElement.querySelector(
+      parentElement.parentElement.parentElement.parentElement.parentElement.querySelector(
           ".js_update_btn"
         );
+
+
       let value_box = parentElement.querySelector(".js_lp_data");
 
       value_box.value = "";
@@ -118,8 +120,7 @@ export const changeGroupIDToFiled = (element, element2) =>{
   let lp_id = element2.getAttribute("data-id");
   let data = { group_id:id, lp_id:lp_id }
 
-  // console.log(data);
-
   fetchOperation2(data, "fetchGroupId.php")
 
 }
+

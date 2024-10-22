@@ -2,4 +2,18 @@ RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ kido_test/LP_system/index.php [QSA,L]
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+
+
+<Files "favicon.ico">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+
+
+AuthType Basic
+AuthName "Restricted Area"
+AuthUserFile /etc/apache2/.htpasswd
+Require valid-user

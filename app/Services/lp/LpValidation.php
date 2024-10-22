@@ -8,20 +8,24 @@ class LpValidation
     {
         // CSRFトークンチェック
         if (!LpRequest::csrfError()) {
+            $_SESSION["saved_data"] = $_POST;
             SystemFeedback::handleError("403", ERROR_403, "error");
         }
         // フォームバリデーション
         if (!LpRequest::formValidation($_POST)) {
-            SystemFeedback::handleError("400", ERROR_400, "index");
+            $_SESSION["saved_data"] = $_POST;
+            SystemFeedback::handleError("400_lp", ERROR_400, "category/?id=" .$_SESSION["category_id"]);
         }
 
         // すでにドメインが登録されてるかチェック
-        if (!LpRequest::isDomainAlreadyExisted()) {
-            SystemFeedback::handleError("400", ERROR_400_DATAEXISTED, "index");
+        if (!LpRequest::isDomainAlreadyExisted($_POST)) {
+            $_SESSION["saved_data"] = $_POST;
+            SystemFeedback::handleError("400_lp", ERROR_400_DATAEXISTED, "category/?id=" .$_SESSION["category_id"]);
         }
         // 選択されたグループが存在するかチェック
         if (!LpRequest::isGroupIDExisted()) {
-            SystemFeedback::handleError("400", ERROR_400, "index");
+            $_SESSION["saved_data"] = $_POST;
+            SystemFeedback::handleError("400_lp", ERROR_400, "category/?id=" .$_SESSION["category_id"]);
         }
     }
 
@@ -31,18 +35,16 @@ class LpValidation
         if (!LpRequest::csrfError()) {
             SystemFeedback::handleError("403", ERROR_403, "error");
         }
-
    
         foreach ($data as $lp) {
             if(isset($lp)){
-                // フォームバリデーション
-                if (!LpRequest::checkMaxLength($lp) || !LpRequest::isValidID($lp["lp_id"])) {
-            
-                    SystemFeedback::handleError("400", ERROR_400, "index");
+          
+                if (!LpRequest::checkMaxLength($lp) || !LpRequest::isValidID($lp["lp_id"]) || (isset($lp["domain"]) ? !LpRequest::isDomainAlreadyExisted($lp) : "")) { 
+                    SystemFeedback::handleError("400_lp_edit", ERROR_400, "error");
                 }
                 // LPIDが存在するかチェック
                 if (!LpRequest::isLpIDExisted($lp["lp_id"])) {
-                    SystemFeedback::handleError("400", ERROR_400, "index");
+                    SystemFeedback::handleError("400_lp_edit", ERROR_400, "error");
                 }
             }
         }
@@ -56,12 +58,12 @@ class LpValidation
         }
         // フォームバリデーション
         if (!isset($data) || !DataValidation::isValidID($data)) {
-            SystemFeedback::handleError("400", ERROR_400, "index");
+            SystemFeedback::handleError("400_lp", ERROR_400, "error");
         }
         
         // LPIDが存在するかチェック
         if (!LpRequest::isLpIDExisted($data)) {
-            SystemFeedback::handleError("400", ERROR_400, "index");
+            SystemFeedback::handleError("400_lp", ERROR_400, "error");
         }
     }
 }

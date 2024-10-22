@@ -11,6 +11,8 @@ export const fetchAndDisplayLpData = (e) => {
   let lp_id = e.target.getAttribute("data-id");
   let data = { id: lp_id, type: "lp" };
 
+  console.log(data);
+
   fetchOperation(data, "fetchLp.php").then((res) => {
     populateLPFields(res[0]).then(() => {
       // 削除モーダル
@@ -27,7 +29,8 @@ export const fetchAndDisplayLpData = (e) => {
  */
 
 const populateLPFields = async (data) => {
-    document.querySelector(".js_title_delete").innerHTML = data["title"];
-    document.querySelector(".js_domain_delete").innerHTML = data["domain"];
+    document.querySelector(".js_title_delete").innerHTML = `${data["title"]}`;
+    document.querySelector(".js_domain_delete").innerHTML = `${data["domain"]}`;
+    document.querySelector(".js_domain_delete").href = `http://${data["domain"]}`;
     document.querySelector(".js_lp_id_delete").value = data["id"];
   };

@@ -1,3 +1,6 @@
+
+import {clearInputField} from "@index/index.js";
+
 // modalの表示処理
 export const showModal = (modal_class)=>{
     document.querySelector(`.${modal_class}`).classList.remove("hidden")
@@ -8,11 +11,19 @@ export const showModal = (modal_class)=>{
 export const hideModal = ()=>{
     const bg = document.querySelector(".bg-gray")
     const all_modals = document.querySelectorAll(".js_modal")
+    const errors = document.querySelectorAll(".js_error_txt")
     bg.addEventListener("click", ()=>{
         all_modals.forEach((modal)=>{
               modal.classList.add("hidden")
         })
         bg.classList.add("hidden")
+        errors.forEach((error)=>{
+            error.classList.add("hidden")
+            error.innerHTML = ""
+        })
+        // unsetLocalStorage("data")
+
+        clearInputField()
   })
 }
 
